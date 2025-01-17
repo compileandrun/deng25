@@ -1,4 +1,15 @@
-.terraform/
+#To remove big data files
 ny_taxi_postgres_data/
 *.csv
 *.csv.gz
+
+#To remove my keys in .json files 
+*.json
+keys/
+
+#To remove machine generated terraform files
+.terraform/
+terraform.tfstate*
+
+.DS_Store
+.DS_Store?
