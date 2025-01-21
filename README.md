@@ -1,2 +1,2 @@
-# deng25
-My learnings, edits and projects in the scope of Deng Zoomcamp
+# deng_zoomcamp_25
+ learnings, edits and project in the scope of DE Zoomcamp
