@@ -9,8 +9,8 @@ file: "{{inputs.taxi}}_tripdata_{{inputs.year}}-{{inputs.month}}.csv" --> green_
   
 Question 3  
   
-select date_trunc(tpep_pickup_datetime,year), count(*) from `de_zoomcamp_kry.yellow_tripdata`
-where date_trunc(tpep_pickup_datetime,year) = '2020-01-01'
+select date_trunc(tpep_pickup_datetime,year), count(*) from `de_zoomcamp_kry.yellow_tripdata`  
+where date_trunc(tpep_pickup_datetime,year) = '2020-01-01'  
 group by 1
   
   
