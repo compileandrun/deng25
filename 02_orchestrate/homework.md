@@ -9,16 +9,16 @@ select date_trunc(tpep_pickup_datetime,year), count(*) from `de_zoomcamp_kry.yel
 where date_trunc(tpep_pickup_datetime,year) = '2020-01-01'<br>
 group by 1<br><br>
 
-Question 4<br>  
+Question 4<br><br>
 select date_trunc(lpep_pickup_datetime,year), count(*) from `de_zoomcamp_kry.green_tripdata`<br>
 where date_trunc(lpep_pickup_datetime,year) = '2020-01-01'<br>
 group by 1<br><br>
 
-Question 5 <br>
+Question 5<br><br>
 select date_trunc(tpep_pickup_datetime,month), count(*) from `de_zoomcamp_kry.yellow_tripdata`<br>
 where date_trunc(tpep_pickup_datetime,month) = '2021-03-01'<br>
 group by 1<br><br>
   
-Question 6 <br><br>
+Question 6<br><br>
 Source: Kestra documentation for triggers plugin - https://kestra.io/plugins/core/triggers/io.kestra.plugin.core.trigger.schedule#timezone
 The time zone identifier (i.e. the second column in the Wikipedia table) to use for evaluating the cron expression. Default value is the server default zone ID.
