@@ -14,18 +14,18 @@ where date_trunc(tpep_pickup_datetime,year) = '2020-01-01'
 group by 1
   
   
-Question 4
+Question 4  
   
-select date_trunc(lpep_pickup_datetime,year), count(*) from `de_zoomcamp_kry.green_tripdata`
-where date_trunc(lpep_pickup_datetime,year) = '2020-01-01'
-group by 1
+select date_trunc(lpep_pickup_datetime,year), count(*) from `de_zoomcamp_kry.green_tripdata`  
+where date_trunc(lpep_pickup_datetime,year) = '2020-01-01'  
+group by 1  
   
   
 Question 5
   
-select date_trunc(tpep_pickup_datetime,month), count(*) from `de_zoomcamp_kry.yellow_tripdata`
-where date_trunc(tpep_pickup_datetime,month) = '2021-03-01'
-group by 1
+select date_trunc(tpep_pickup_datetime,month), count(*) from `de_zoomcamp_kry.yellow_tripdata`<br>
+where date_trunc(tpep_pickup_datetime,month) = '2021-03-01'<br>
+group by 1  
   
   
 Question 6
