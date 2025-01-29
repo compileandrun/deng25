@@ -4,10 +4,10 @@ Question 1
   
   
 Question 2
-file: "{{inputs.taxi}}_tripdata_{{inputs.year}}-{{inputs.month}}.csv" --> green_tripdata_2020-04.csv
+file: "{{inputs.taxi}}_tripdata_{{inputs.year}}-{{inputs.month}}.csv" --> green_tripdata_2020-04.csv  
   
   
-Question 3
+Question 3  
   
 select date_trunc(tpep_pickup_datetime,year), count(*) from `de_zoomcamp_kry.yellow_tripdata`
 where date_trunc(tpep_pickup_datetime,year) = '2020-01-01'
