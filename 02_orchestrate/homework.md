@@ -19,6 +19,6 @@ select date_trunc(tpep_pickup_datetime,month), count(*) from `de_zoomcamp_kry.ye
 where date_trunc(tpep_pickup_datetime,month) = '2021-03-01'<br>
 group by 1<br><br>
   
-Question 6 <br>
+Question 6 <br><br>
 Source: Kestra documentation for triggers plugin - https://kestra.io/plugins/core/triggers/io.kestra.plugin.core.trigger.schedule#timezone
 The time zone identifier (i.e. the second column in the Wikipedia table) to use for evaluating the cron expression. Default value is the server default zone ID.
