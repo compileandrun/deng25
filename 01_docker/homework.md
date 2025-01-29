@@ -21,3 +21,7 @@ group by 1
 order by 1 ASC<br><br>
 
 Question 4<br>
+select lpep_pickup_datetime,trip_distance from green_taxi_trips  
+where trip_distance = (select max(trip_distance) from green_taxi_trips)<br><br>
+
+Question 5 <br>
