@@ -7,9 +7,6 @@ ny_taxi_postgres_data/
 *.json
 keys/
 
-*.parquet
-*.parquet.crc
-
 #To remove machine generated terraform files
 .terraform/
 terraform.tfstate*
