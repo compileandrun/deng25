@@ -1,0 +1,2 @@
+#i want to keep csvs only in this folder.
+*.csv
