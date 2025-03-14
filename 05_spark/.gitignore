@@ -1,0 +1,9 @@
+#To remove big data files
+*.parquet
+*.csv
+*.csv.gz
+
+#To remove my keys in .json files 
+*.json
+
+*.crc
