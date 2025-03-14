@@ -1,5 +1,4 @@
 #To remove big data files
-ny_taxi_postgres_data/
 *.csv
 *.csv.gz
 
@@ -8,4 +7,4 @@ ny_taxi_postgres_data/
 *.parquet
 *.crc
 *.parquet.crc
-yellow_tripdata_2024-10.parquet
+
