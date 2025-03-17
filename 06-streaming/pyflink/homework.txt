@@ -1,0 +1,8 @@
+Q1
+
+docker exec -it redpanda-1 sh -c "rpk --version"
+
+
+Q2
+
+docker exec -it redpanda-1 sh -c "rpk topic create green_trips"
