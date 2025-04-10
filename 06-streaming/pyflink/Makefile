@@ -33,6 +33,7 @@ build:
 
 .PHONY: up
 ## Builds the base Docker image and starts Flink cluster
+#	--remove-orphans -- Remove containers for services not defined in the Compose file
 up:
 	docker compose up --build --remove-orphans  -d
 
@@ -40,6 +41,11 @@ up:
 ## Shuts down the Flink cluster
 down:
 	docker compose down --remove-orphans
+
+.PHONY: producer_job
+## Creates the producer job
+pjob:
+	python homework_producer.py
 
 .PHONY: job
 ## Submit the Flink job

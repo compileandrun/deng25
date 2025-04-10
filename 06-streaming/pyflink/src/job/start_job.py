@@ -6,8 +6,13 @@ def create_processed_events_sink_postgres(t_env):
     table_name = 'processed_events'
     sink_ddl = f"""
         CREATE TABLE {table_name} (
-            test_data INTEGER,
-            event_timestamp TIMESTAMP
+            lpep_pickup_datetime   VARCHAR,
+            lpep_dropoff_datetime  VARCHAR,
+            PULocationID           INTEGER,
+            DOLocationID           INTEGER,
+            passenger_count        FLOAT,
+            trip_distance          FLOAT,
+            tip_amount             FLOAT
         ) WITH (
             'connector' = 'jdbc',
             'url' = 'jdbc:postgresql://postgres:5432/postgres',
@@ -26,16 +31,21 @@ def create_events_source_kafka(t_env):
     pattern = "yyyy-MM-dd HH:mm:ss.SSS"
     source_ddl = f"""
         CREATE TABLE {table_name} (
-            test_data INTEGER,
-            event_timestamp BIGINT,
-            event_watermark AS TO_TIMESTAMP_LTZ(event_timestamp, 3),
-            WATERMARK for event_watermark as event_watermark - INTERVAL '5' SECOND
+            lpep_pickup_datetime   VARCHAR,
+            lpep_dropoff_datetime  VARCHAR,
+            PULocationID           INTEGER,
+            DOLocationID           INTEGER,
+            passenger_count        FLOAT,
+            trip_distance          FLOAT,
+            tip_amount             FLOAT
+            --event_watermark AS TO_TIMESTAMP_LTZ(event_timestamp, 3),
+            --WATERMARK for event_watermark as event_watermark - INTERVAL '5' SECOND
         ) WITH (
             'connector' = 'kafka',
             'properties.bootstrap.servers' = 'redpanda-1:29092',
-            'topic' = 'test-topic',
-            'scan.startup.mode' = 'latest-offset',
-            'properties.auto.offset.reset' = 'latest',
+            'topic' = 'test_1',
+            'scan.startup.mode' = 'earliest-offset',
+            'properties.auto.offset.reset' = 'earliest',
             'format' = 'json'
         );
         """
@@ -60,8 +70,13 @@ def log_processing():
             f"""
                     INSERT INTO {postgres_sink}
                     SELECT
-                        test_data,
-                        TO_TIMESTAMP_LTZ(event_timestamp, 3) as event_timestamp
+                       lpep_pickup_datetime,
+                        lpep_dropoff_datetime,
+                        PULocationID,
+                        DOLocationID,
+                        passenger_count,
+                        trip_distance,
+                        tip_amount
                     FROM {source_table}
                     """
         ).wait()
