@@ -94,16 +94,17 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_ROLE=postgres #added to debug but didnt help
     ports:
-      - "5432:5432"
+      - "5434:5432"
     extra_hosts:
      - "host.docker.internal:127.0.0.1" #// Linux
      - "host.docker.internal:host-gateway" #// Access services on the host machine from within the Docker container
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
-      - PGADMIN_DEFAULT_PASSWORD=root
-    ports:
-      - "8080:80"
+  #pgadmin:
+  #  image: dpage/pgadmin4
+  #  container_name: pgadmin
+  #  environment:
+  #    - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+  #    - PGADMIN_DEFAULT_PASSWORD=root
+  #  ports:
+  #    - "8080:80"

@@ -9,52 +9,58 @@
 import sys
 from time import time
 import pandas as pd
+import json
+from kafka import KafkaProducer
 
 #sys.prefix
 #pip install kafka-python
 
-import json
-from kafka import KafkaProducer
+def main():
+    #def json_serializer(data):
+        #return json.dumps(data).encode('utf-8')
 
-def json_serializer(data):
-    return json.dumps(data).encode('utf-8')
+    server = 'localhost:9092'
 
-server = 'localhost:9092'
+    def json_serializer(data):
+        return json.dumps(data).encode('utf-8')
 
-producer = KafkaProducer(
-    bootstrap_servers=[server],
-    value_serializer=json_serializer
-)
+    producer = KafkaProducer(
+        bootstrap_servers=[server],
+        value_serializer=json_serializer
+    )
 
-producer.bootstrap_connected()
+    producer.bootstrap_connected()
 
-df = pd.read_csv('green_tripdata_2019-10.csv.gz',compression='gzip')
+    df = pd.read_csv('/Users/koray/Documents/GitHub/deng25/06-streaming/pyflink/green_tripdata_2019-10.csv.gz',compression='gzip')
 
-df.info()
+    df.info()
 
-column_list = ['lpep_pickup_datetime',
-'lpep_dropoff_datetime',
-'PULocationID',
-'DOLocationID',
-'passenger_count',
-'trip_distance',
-'tip_amount']
-df = df[column_list]
-df.info()
-df.head()
+    column_list = ['lpep_pickup_datetime',
+    'lpep_dropoff_datetime',
+    'PULocationID',
+    'DOLocationID',
+    'passenger_count',
+    'trip_distance',
+    'tip_amount']
+    df = df[column_list]
+    df.info()
+    df.head()
 
-my_dict = df.to_dict(orient='records')
+    my_dict = df.to_dict(orient='records')
 
-t0 = time()
-for message in my_dict:
-    topic_name = 'green_trips'
-    producer.send(topic_name, value=message)
-t1 = time()
-took = t1 - t0
-print(took)
+    t0 = time()
+    for message in my_dict:
+        topic_name = 'green_trips'
+        producer.send(topic_name, value=message)
+    t1 = time()
+    took = t1 - t0
+    print(took)
 
-producer.flush()
+    producer.flush()
+    producer.close()
 
+if __name__ == '__main__':
+    main()
 
 
 

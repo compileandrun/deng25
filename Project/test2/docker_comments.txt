@@ -1,0 +1,8 @@
+
+docker build -t koray:test .
+
+docker run -it --name first_test koray:test
+
+docker image rm koray:test
+
+docker container rm first_test
