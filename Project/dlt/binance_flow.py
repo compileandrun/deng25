@@ -4,7 +4,7 @@ import json
 from datetime import datetime
 import duckdb
 from typing import Any, List, Optional
-import pyarrow
+#import pyarrow
 import dlt
 from dlt.sources.helpers.rest_client import RESTClient
 from dlt.sources.helpers.rest_client.paginators import OffsetPaginator, BasePaginator
