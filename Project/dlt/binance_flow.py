@@ -56,23 +56,32 @@ def binance_api():
     for page in client.paginate("/api/v3/aggTrades?symbol=BTCUSDT"):
         yield page
 
-# define new dlt pipeline to test with duckdb
+## define new dlt pipeline to test with duckdb
 #pipeline = dlt.pipeline(
 #    destination="duckdb", #database technology
 #    pipeline_name='binance', #database name in the destination
 #    dataset_name='aggtrade' #dataset name in the destination
 #)
-# define new dlt pipeline for Google Cloud Storage
+
+# run the pipeline with the new resource
+#load_info = pipeline.run(binance_api, write_disposition="replace")
+#print(load_info)
+
+## define new dlt pipeline for Google Cloud Storage
 pipeline = dlt.pipeline(
     destination="filesystem", #database technology
     pipeline_name='binance', #database name in the destination
     dataset_name='aggtrade' #dataset name in the destination
 )
 
-
 # run the pipeline with the new resource
-#load_info = pipeline.run(binance_api, write_disposition="replace")
-#print(load_info)
+load_info = pipeline.run(binance_api(start_time,end_time), write_disposition="append", # appends create a new file each tim
+                         table_name='binance_data') #table name corresponds to a subfolder inside dataset_name
+print(load_info)
+
+# explore loaded data
+#pipeline.dataset(dataset_type="default").aggtrades.df()
+
 
 # explore loaded data
 #pipeline.dataset(dataset_type="default").aggtrades.df()
