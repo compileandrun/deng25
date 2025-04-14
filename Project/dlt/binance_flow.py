@@ -41,17 +41,28 @@ class TimeRangePaginator(BasePaginator):
         request.params['startTime'] = self.current_time
         request.params['endTime'] = next_end_time
 
-@dlt.resource(name="aggtrades", write_disposition="replace") #aggtrades will be the table name
-def binance_api():
+start_time = int(datetime.utcnow().timestamp())*1000-60*1000*10
+print(start_time)
+end_time = int(datetime.utcnow().timestamp())*1000-60*1000*2
+print(end_time)
+
+
+@dlt.resource(name="aggtrades", write_disposition="append") #aggtrades will be the table name
+def binance_api(start_timem,end_time):
     client = RESTClient(
         base_url="https://data-api.binance.vision"
         ,paginator=TimeRangePaginator(
-        start_time=1672531200000,  # Start time in milliseconds (e.g., 2023-01-01)
-        end_time=1672617600000,    # End time in milliseconds (e.g., 2023-01-02)
-        interval_ms=60 * 60 * 4000  # 1-hour interval
+        #start_time=1672531200000,  # Start time in milliseconds (e.g., 2023-01-01)
+        #end_time=1672617600000,    # End time in milliseconds (e.g., 2023-01-02)
+        start_time=start_time,  # Start time in milliseconds (e.g., 2023-01-01)
+        end_time=end_time,    # End time in milliseconds (e.g., 2023-01-02)
+        interval_ms=60  * 1000  # 1-minute interval
         )
         
     )
+
+    for page in client.paginate("/api/v3/aggTrades?symbol=BTCUSDT"):
+        yield page
 
     for page in client.paginate("/api/v3/aggTrades?symbol=BTCUSDT"):
         yield page
