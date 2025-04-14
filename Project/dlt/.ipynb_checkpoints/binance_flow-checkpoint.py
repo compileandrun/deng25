@@ -6,8 +6,6 @@ import duckdb
 from typing import Any, List, Optional
 #import pyarrow
 import dlt
-from dlt.destinations import filesystem #for GCS
-
 from dlt.sources.helpers.rest_client import RESTClient
 from dlt.sources.helpers.rest_client.paginators import OffsetPaginator, BasePaginator
 from dlt.sources.helpers.requests import Response, Request
@@ -48,7 +46,7 @@ def binance_api():
         ,paginator=TimeRangePaginator(
         start_time=1672531200000,  # Start time in milliseconds (e.g., 2023-01-01)
         end_time=1672617600000,    # End time in milliseconds (e.g., 2023-01-02)
-        interval_ms=60 * 60 * 4000  # 1-hour interval
+        interval_ms=60 * 60 * 1000  # 1-hour interval
         )
         
     )
@@ -56,33 +54,26 @@ def binance_api():
     for page in client.paginate("/api/v3/aggTrades?symbol=BTCUSDT"):
         yield page
 
-# define new dlt pipeline to test with duckdb
-#pipeline = dlt.pipeline(
-#    destination="duckdb", #database technology
-#    pipeline_name='binance', #database name in the destination
-#    dataset_name='aggtrade' #dataset name in the destination
-#)
-# define new dlt pipeline for Google Cloud Storage
+# define new dlt pipeline
 pipeline = dlt.pipeline(
-    destination="filesystem", #database technology
+    destination="duckdb", #database technology
     pipeline_name='binance', #database name in the destination
     dataset_name='aggtrade' #dataset name in the destination
 )
 
-
 # run the pipeline with the new resource
-#load_info = pipeline.run(binance_api, write_disposition="replace")
-#print(load_info)
+load_info = pipeline.run(binance_api, write_disposition="replace")
+print(load_info)
 
 # explore loaded data
-#pipeline.dataset(dataset_type="default").aggtrades.df()
+pipeline.dataset(dataset_type="default").aggtrades.df()
 
 # we reuse the pipeline instance below and load to the same dataset as data
-#pipeline.run([load_info], table_name="_load_info")
+pipeline.run([load_info], table_name="_load_info")
 
 # Get the trace of the last run of the pipeline
 # The trace contains timing information on extract, normalize, and load steps
-#trace = pipeline.last_trace
+trace = pipeline.last_trace
 
 # Load the trace information into a table named "_trace" in the destination
-#pipeline.run([trace], table_name="_trace")
+pipeline.run([trace], table_name="_trace")
