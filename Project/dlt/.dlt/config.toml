@@ -9,3 +9,6 @@ dlthub_telemetry = true
 resources = ["a", "b", "c"] # please set me up!
 [sources.rest_api.client] # please set me up!
 key = "value"
+
+[sources.chess]
+config_int = 0 # please set me up!
