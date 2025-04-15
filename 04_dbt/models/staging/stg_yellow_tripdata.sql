@@ -38,9 +38,18 @@ select
 from tripdata
 where rn = 1
 
--- dbt build --select <model.sql> --vars '{'is_test_run: false}'
-{% if var('is_test_run', default=true) %}
+-- dbt build --select stg_yellow_tripdata.sql --vars '{'is_test_run': false}'
+
+{% if var('is_test_run', default=false) %}
 
   limit 100
 
 {% endif %}
+
+-- dbt build --select stg_yellow_tripdata.sql --vars '{'days_back': 8}'
+/*{% if var (days_limit,default = 10)%}
+
+and cast(tpep_pickup_datetime as timestamp) >= CURRENT_TIMESTAMP - INTERVAL '{{ var("days_back", env_var("DBT_DAYS_BACK", "30")) }}' DAY
+and CAST('{{env_var('DBT_DAYS_BACK','10') }}' AS INT) = 7
+{% endif %}
+*/

@@ -2,10 +2,10 @@ version: 2
 
 sources:
   - name: staging
-    #database: "{{ env_var('DBT_DATABASE', 'taxi-rides-ny-339813-412521') }}"
-    #schema: "{{ env_var('DBT_SCHEMA', 'trips_data_all') }}"
-    database: 'stellar-day-445214-e5'
-    schema: "sql_database_data"
+    database: "{{ env_var('DBT_DATABASE', 'stellar-day-445214-e5') }}"
+    schema: "{{ env_var('DBT_SCHEMA', 'sql_database_data') }}"
+    #database: 'stellar-day-445214-e5'
+    #schema: "sql_database_data"
       # loaded_at_field: record_loaded_at
     tables:
       - name: green2

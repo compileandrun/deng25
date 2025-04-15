@@ -1,6 +1,7 @@
 {{
     config(
-        materialized='table' 
+        materialized='table' ,
+        schema=resolve_schema_for('core')
     )
 }}
 --test
