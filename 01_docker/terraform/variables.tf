@@ -1,11 +1,11 @@
 variable "credentials" {
     description = "Credentials for the service account"
-    default = "./keys/stellar-day-445214.json"
+    default = "~/.gc/elegant-karma.json"
 }
 
 variable "project" {
     description = "Project"
-    default = "stellar-day-445214-e5"
+    default = "elegant-karma-454910-u2"
 }
 
 variable "region" {

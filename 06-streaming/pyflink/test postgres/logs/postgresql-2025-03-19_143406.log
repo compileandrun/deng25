@@ -1,0 +1,5 @@
+2025-03-19 14:34:06.718 GMT [49]: [3-1] user=,db= LOG:  starting PostgreSQL 16.8 (Debian 16.8-1.pgdg120+1) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+2025-03-19 14:34:06.719 GMT [49]: [4-1] user=,db= LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-03-19 14:34:06.722 GMT [53]: [1-1] user=,db= LOG:  database system was shut down at 2025-03-19 14:34:06 GMT
+2025-03-19 14:34:06.733 GMT [49]: [5-1] user=,db= LOG:  database system is ready to accept connections
+2025-03-19 14:34:06.874 GMT [59]: [1-1] user=postgres,db=postgres FATAL:  no pg_hba.conf entry for host "[local]", user "postgres", database "postgres", no encryption

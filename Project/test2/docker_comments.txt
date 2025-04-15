@@ -1,0 +1,28 @@
+
+docker build -t koray:test .
+
+docker run -it --name first_test koray:test
+
+docker image rm koray:test
+
+docker container rm first_test
+
+#for dlt
+
+docker build -t dlt:v1 .
+docker build --no-cache -t dlt:v1 .
+
+docker run -it --name first_test dlt:v1
+
+docker image rm dlt:v1
+
+docker container rm first_test
+
+#to remove all stopped containers
+docker container prune -f
+
+#to remove all not used images
+docker image prune -a -f
+
+#install kestra - I expose port 8082 from the local machine - because i reserve 8080 for the VM port forwarding
+docker run --pull=always --rm -it -p 8082:8080 --user=root -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp kestra/kestra:latest server local

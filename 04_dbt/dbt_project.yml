@@ -4,6 +4,8 @@
 # name or the intended use of these models
 name: 'taxi_rides_ny'
 version: '1.0.0'
+dbt-cloud:
+    project-id: 70471823428488
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.

@@ -14,7 +14,7 @@ provider "google" {
 }
 
 resource "google_storage_bucket" "deng-test" {
-  name          = "stellar-day-445214-e5_demo-bucket"
+  name          = "elegant-bucket"
   location      = var.region
   force_destroy = true
 
@@ -37,7 +37,7 @@ resource "google_storage_bucket" "deng-test" {
 }
 
 resource "google_bigquery_dataset" "dataset" {
-  dataset_id = "koray_test"
+  dataset_id = "elegant"
   project    = var.project
   location   = var.region
 }
