@@ -53,8 +53,7 @@ sources:
         external:
           location: gs://elegant-bucket/aggtrade/binance_data/*
           options: 
-            format: jsonl
-            skip_leading_rows: 1
+            format: json
 
         columns:
           - name: _dlt_id
