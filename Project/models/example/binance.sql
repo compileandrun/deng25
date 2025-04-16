@@ -2,9 +2,9 @@
 {{ config(materialized='table') }}
 
 
-select 1
+select
 *
-from {{  source('elegant','binance_data')  }}
+from {{source('elegant','binance_data')}}
 
 /*
     Uncomment the line below to remove records with null `id` values
