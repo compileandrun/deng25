@@ -20,30 +20,31 @@ models:
             #    - unique
             #    - not_null
 
-#    - name: binance
-#      description: 'Cleaned Binance market data'
-#      columns:
-#          - name: a
-#          - name: p
-#          - name: q
-#          - name: f
-#          - name: l
-#          - name: T
-#          - name: m
-#          - name: M          
+    - name: binance
+      description: 'Cleaned Binance market data'
+      columns:
+          - name: a
+          - name: p
+          - name: q
+          - name: f
+          - name: l
+          - name: T
+          - name: m
+          - name: M          
 
 
 sources:
-#  - name: elegant
-#    #database: "{{ env_var('DBT_DATABASE', 'stellar-day-445214-e5') }}"
-#    #schema: "{{ env_var('DBT_SCHEMA', 'sql_database_data') }}"
-#    database: elegant-karma-454910-u2
-#    schema: elegant
-#      # loaded_at_field: record_loaded_at
-#    tables:
-#      - name: binance_data
-#         # freshness:
-#           # error_after: {count: 6, period: hour}
+  - name: elegant
+    #database: "{{ env_var('DBT_DATABASE', 'stellar-day-445214-e5') }}"
+    #schema: "{{ env_var('DBT_SCHEMA', 'sql_database_data') }}"
+    database: elegant-karma-454910-u2
+    schema: elegant
+      # loaded_at_field: record_loaded_at
+    tables:
+      - name: binance_data
+         # freshness:
+           # error_after: {count: 6, period: hour}
+
   - name: elegant
     loader: gcloud storage
     tables:
