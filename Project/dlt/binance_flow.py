@@ -64,9 +64,6 @@ def binance_api(start_timem,end_time):
     for page in client.paginate("/api/v3/aggTrades?symbol=BTCUSDT"):
         yield page
 
-    for page in client.paginate("/api/v3/aggTrades?symbol=BTCUSDT"):
-        yield page
-
 ## define new dlt pipeline to test with duckdb
 #pipeline = dlt.pipeline(
 #    destination="duckdb", #database technology
