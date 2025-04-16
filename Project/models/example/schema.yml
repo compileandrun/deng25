@@ -49,37 +49,29 @@ sources:
     loader: gcloud storage
     tables:
       - name: binance_ext
-        description: 'This is an external table based on all files in the GCS bucket'
+        description: This is an external table based on all files in the GCS bucket
         external:
-            location: 'gs://elegant-bucket/aggtrade/binance_data/*'
-            options: jsonl
+          location: gs://elegant-bucket/aggtrade/binance_data/*
+          options: 
+            format: jsonl
             skip_leading_rows: 1
 
         columns:
           - name: _dlt_id
             data_type: string
-            #description: "Application ID"
           - name: _dlt_load_id
-            data_type: float
-            #description: "Application ID"
+            data_type: NUMERIC
           - name: m
             data_type: bool
-            #description: "Application ID"
           - name: t
             data_type: integer
-            #description: "Application ID"
           - name: q
-            data_type: float
-            #description: "Application ID"
+            data_type: NUMERIC
           - name: l
             data_type: integer
-            #description: "Application ID"
           - name: p
-            data_type: float
-            #description: "Application ID"
+            data_type: NUMERIC
           - name: f
             data_type: integer
-            #description: "Application ID"
           - name: a
             data_type: integer
-            #description: "Application ID"
