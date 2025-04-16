@@ -1,4 +1,4 @@
-abversion: 2
+version: 2
 
 sources:
   - name: external_data
