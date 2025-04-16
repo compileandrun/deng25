@@ -2,12 +2,13 @@ version: 2
 
 sources:
   - name: external_data
+  loader: gcloud storage
     tables:
       - name: binance_ext
-        description: This is an external table based on all files in the GCS bucket
+        description: 'This is an external table based on all files in the GCS bucket'
         external:
-            location: gs://elegant-bucket/aggtrade/binance_data
-        
+            location: 'gs://elegant-bucket/aggtrade/binance_data/*'
+            options: jsonl
 
         columns:
           - name: _dlt_id
