@@ -20,17 +20,17 @@ models:
             #    - unique
             #    - not_null
 
-    - name: binance
-      description: 'Cleaned Binance market data'
-      columns:
-          - name: a
-          - name: p
-          - name: q
-          - name: f
-          - name: l
-          - name: T
-          - name: m
-          - name: M          
+#    - name: binance
+#      description: 'Cleaned Binance market data'
+#      columns:
+#          - name: a
+#          - name: p
+#          - name: q
+#          - name: f
+#          - name: l
+#          - name: T
+#          - name: m
+#          - name: M          
 
 
 sources:
