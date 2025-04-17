@@ -23,15 +23,28 @@ models:
     - name: binance
       description: 'Cleaned Binance market data'
       columns:
-          - name: a
-          - name: p
-          - name: q
-          - name: f
-          - name: l
-          - name: T
-          - name: m
-          - name: M          
+          - name: trade_id
+            description: Unique id of each trade
+            tests:
+              - unique
+              - not_null
+          - name: price
+          - name: quantity
+          - name: first_trade_id
+          - name: last_trade_it
+          - name: trade_timestamp
+          - name: trade_date
+          - name: exchange_info
+          - name: is_buyer_maker 
 
+    - name: binance_totals
+      description: 'Aggregated Binance market data'
+      columns:
+          - name: trade_day_hour
+            description: Unique id of each trade
+          - name: total_volume
+          - name: average_price
+          - name: exchange_info
 
 sources:
   - name: elegant
