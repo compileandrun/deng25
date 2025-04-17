@@ -45,6 +45,7 @@ models:
           - name: total_volume
           - name: average_price
           - name: exchange_info
+          - name: total_number_of_trades
 
 sources:
   - name: elegant
