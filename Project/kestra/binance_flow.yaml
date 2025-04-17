@@ -1,20 +1,9 @@
-id: zip_to_python
+id: binance_flow
 namespace: company.team
 
 
 tasks:
-  - id: git_token
-    type: io.kestra.plugin.core.log.Log
-    message: "{{ kv('GITHUB_ACCESS_TOKEN') }}"
-  - id: get_files_from_git
-    type: io.kestra.plugin.git.SyncNamespaceFiles
-    username: compileandrun
-    password: git_token
-    url: "https://github.com/compileandrun/deng25/"
-    #branch: main
-    #namespace: git
-    gitDirectory: Project/dlt
-    dryRun: false
+
   - id: print_requirements
     type: io.kestra.plugin.scripts.shell.Commands
     taskRunner:
@@ -23,8 +12,16 @@ tasks:
       enabled: true
     commands:
       - cat requirements.txt
+
   - id: binance
     type: io.kestra.plugin.scripts.python.Commands
+    env:
+      BUCKET_URL: "{{kv('BUCKET_URL')}}"
+    #  DESTINATION__FILESYSTEM__CREDENTIALS__CLIENT_EMAIL: "{{kv('client_email')}}"
+    #  DESTINATION__FILESYSTEM__CREDENTIALS__PROJECT_ID: "{{kv('project_id')}}"
+    #  DESTINATION__FILESYSTEM__CREDENTIALS__PRIVATE_KEY: "{{kv('private_key')}}"
+    #  GOOGLE_APPLICATION_CREDENTIALS: "{{ kv('key_file') }}"
+      DESTINATION__FILESYSTEM__CREDENTIALS: "{{ kv('key_file') }}"
     warningOnStdErr: false
     taskRunner:
       type: io.kestra.plugin.scripts.runner.docker.Docker
@@ -38,3 +35,7 @@ tasks:
 #        - binance_flow.py
     commands:
       - python binance_flow.py
+triggers:
+  - id: schedule
+    type: io.kestra.plugin.core.trigger.Schedule
+    cron: "*/10 * * * *"
