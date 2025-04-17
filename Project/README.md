@@ -27,3 +27,32 @@ Looker Data Studio - reporting
 
 ![Architecture](architecture.png)
 
+To copy the git repo:
+```git clone https://github.com/compileandrun/deng25.git```
+Then go to the Project folder.
+
+Follow the 1.5.1 video from Data Engineering Zoomcamp [Youtube video](https://www.youtube.com/watch?v=ae-CV2KfoN0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=14&ab_channel=DataTalksClub%E2%AC%9B).
+
+After that make sure to install Kestra with:
+
+```docker run --pull=always --rm -it -p 8080:8080 --user=root -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp kestra/kestra:latest server local```
+
+Install dlt python package
+
+```pip install dlt```
+
+### Service Account
+
+### How the GCS BUcket looks like
+![GCS Bucket](gcs1.png)
+![GCS Bucket - Inside](gcs2.png)
+### Bigquery
+
+### Kestra
+Kestra clones the same Project folder of this git repor first and saves those files to the Namespace. Then, it runs the python file called binance_flow.py which runs a dlt pipeline to store the json data file to the GCS bucket. This flow is triggered every 10 minutes and creates a new file in this bucket.
+
+### DBT
+DBT is used to create an external table from all the created files. Then, it also creates the structured data tables.
+Dbt_external_tables package is installed. Check [here](https://hub.getdbt.com/dbt-labs/dbt_external_tables/latest/) for more info. 
+
+### Looker Studi Report
